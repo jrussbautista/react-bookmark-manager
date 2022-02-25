@@ -21,6 +21,11 @@
   },
 
   "plugins": ["react", "react-hooks", "prettier", "@typescript-eslint"],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
   "rules": {
     "import/prefer-default-export": 0,
     "no-console": [
@@ -50,6 +55,7 @@
     "react/prop-types": 1,
     "react/no-unused-state": "warn",
     "react/react-in-jsx-scope": 0,
-    "semi": ["error", "always"]
+    "semi": ["error", "always"],
+    "react/jsx-key": "off"
   }
 }
