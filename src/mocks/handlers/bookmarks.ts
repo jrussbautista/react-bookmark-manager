@@ -1,24 +1,39 @@
 import { rest } from 'msw';
+import Change from 'chance';
 import { API_URL } from './../../constants/app';
+import { db } from '../db';
 
 // 1 second
 const DELAY = 1000;
 
+const chance = new Change();
+
 export const bookmarksHandlers = [
   rest.get(`${API_URL}bookmarks`, (req, res, ctx) => {
+    const bookmarks = db.bookmarks.getAll();
     return res(
       ctx.delay(DELAY),
       ctx.json({
-        data: [
-          {
-            id: 1,
-            title: 'Bookmark title',
-            description: 'bookmark description',
-            link: 'https://www.link.com',
-            createdAt: '2022-03-20T08:52:33.303Z',
-            updatedAt: '2022-03-20T08:52:33.303Z',
-          },
-        ],
+        data: bookmarks,
+      })
+    );
+  }),
+
+  rest.post(`${API_URL}bookmarks`, (req, res, ctx) => {
+    const id = chance.guid();
+    const date = new Date().toISOString();
+    const data = req.body as object;
+    const newBookMark = {
+      id,
+      createAt: date,
+      updatedAt: date,
+      ...data,
+    };
+    const bookmark = db.bookmarks.create(newBookMark);
+    return res(
+      ctx.delay(DELAY),
+      ctx.json({
+        ...bookmark,
       })
     );
   }),
