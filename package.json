@@ -61,6 +61,7 @@
     "eslint-plugin-react": "^7.29.0",
     "husky": "^7.0.4",
     "lint-staged": "^12.3.4",
+    "msw": "^0.39.2",
     "prettier": "^2.5.1"
   },
   "lint-staged": {
@@ -69,5 +70,11 @@
       "npm run lint",
       "npm run test:nowatch"
     ]
+  },
+  "msw": {
+    "workerDirectory": "public"
+  },
+  "optionalDependencies": {
+    "node-fetch": "^3.0.0"
   }
 }

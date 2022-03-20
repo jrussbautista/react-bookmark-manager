@@ -28,12 +28,7 @@
   },
   "rules": {
     "import/prefer-default-export": 0,
-    "no-console": [
-      "error",
-      {
-        "allow": ["error"]
-      }
-    ],
+    "no-console": "warn",
     "no-const-assign": "warn",
     "no-extra-semi": "error",
     "no-undef": "warn",
