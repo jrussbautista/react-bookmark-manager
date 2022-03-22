@@ -28,6 +28,20 @@ const Title = styled(Typography)({
   flexGrow: 1,
 });
 
+const LinksContainer = styled('div')(({ theme }) => ({
+  display: 'none',
+  alignItems: 'center',
+  [theme.breakpoints.up('lg')]: {
+    display: 'flex',
+  },
+}));
+
+const MenuButton = styled(IconButton)(({ theme }) => ({
+  [theme.breakpoints.up('lg')]: {
+    display: 'none',
+  },
+}));
+
 const Navbar = () => {
   const [openDrawer, setOpenDrawer] = useState(false);
 
@@ -38,24 +52,24 @@ const Navbar = () => {
           <Toolbar>
             <Title variant="h6">Bookmarks</Title>
             <RightContainer>
-              {LINKS.map((link) => (
-                <ButtonLink key={link.title}>{link.title}</ButtonLink>
-              ))}
+              <LinksContainer>
+                {LINKS.map((link) => (
+                  <ButtonLink key={link.title}>{link.title}</ButtonLink>
+                ))}
+                <Button variant="contained" color="error" disableElevation>
+                  LOGOUT
+                </Button>
+              </LinksContainer>
 
-              <Button variant="contained" color="error" disableElevation>
-                LOGOUT
-              </Button>
-
-              <IconButton
+              <MenuButton
                 size="large"
                 edge="start"
                 color="inherit"
                 aria-label="open menu"
                 onClick={() => setOpenDrawer(true)}
-                sx={{ display: { sx: 'block', lg: 'none' } }}
               >
                 <MenuIcon />
-              </IconButton>
+              </MenuButton>
             </RightContainer>
           </Toolbar>
         </AppBar>

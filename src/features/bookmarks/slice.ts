@@ -1,11 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { Bookmark } from './types';
 
-export interface BookmarksState {
-  value: number;
-}
+export type BookmarksState = {
+  items: Bookmark[];
+};
 
 const initialState: BookmarksState = {
-  value: 0,
+  items: [],
 };
 
 export const bookmarksSlice = createSlice({
