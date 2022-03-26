@@ -37,4 +37,16 @@ export const bookmarksHandlers = [
       })
     );
   }),
+
+  rest.delete(`${API_URL}bookmarks/:id`, (req, res, ctx) => {
+    const id = req.params.id as string;
+
+    db.bookmarks.delete({ where: { id: { equals: id } } });
+    return res(
+      ctx.delay(DELAY),
+      ctx.json({
+        id,
+      })
+    );
+  }),
 ];

@@ -27,8 +27,8 @@ function BookmarksList() {
   return (
     <div>
       {data.data.map((bookmark) => (
-        <Box sx={{ mb: 4 }}>
-          <BookmarkCard key={bookmark.id} bookmark={bookmark} />
+        <Box sx={{ mb: 4 }} key={bookmark.id}>
+          <BookmarkCard bookmark={bookmark} />
         </Box>
       ))}
 
