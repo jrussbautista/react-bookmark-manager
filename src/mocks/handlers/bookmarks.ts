@@ -19,6 +19,21 @@ export const bookmarksHandlers = [
     );
   }),
 
+  rest.get(`${API_URL}bookmarks/:id`, (req, res, ctx) => {
+    const id = req.params.id as string;
+    const bookmark = db.bookmarks.findFirst({
+      where: { id: { equals: id } },
+    });
+    if (!bookmark) {
+      return res(
+        ctx.delay(DELAY),
+        ctx.status(404),
+        ctx.json({ message: 'Bookmark not found.' })
+      );
+    }
+    return res(ctx.delay(DELAY), ctx.json(bookmark));
+  }),
+
   rest.post(`${API_URL}bookmarks`, (req, res, ctx) => {
     const id = chance.guid();
     const date = new Date().toISOString();
@@ -48,5 +63,21 @@ export const bookmarksHandlers = [
         id,
       })
     );
+  }),
+
+  rest.put(`${API_URL}bookmarks/:id`, (req, res, ctx) => {
+    const id = req.params.id as string;
+    const data = req.body as {
+      title: string;
+      description: string;
+      link: string;
+    };
+
+    const updatedBookmark = db.bookmarks.update({
+      where: { id: { equals: id } },
+      data,
+    });
+
+    return res(ctx.delay(DELAY), ctx.json(updatedBookmark));
   }),
 ];
