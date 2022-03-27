@@ -1,11 +1,13 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
-import BookmarkDeleteDialog from './../BookmarkDeleteDialog/index';
+import { useAppSelector } from 'app/hooks';
+import BookmarkDeleteDialog from '../BookmarkDeleteDialog';
 
 type BookmarkMenuOptions = {
   anchorEl: null | HTMLElement;
@@ -13,6 +15,10 @@ type BookmarkMenuOptions = {
 };
 
 function BookmarkMenuOptions({ anchorEl, onClose }: BookmarkMenuOptions) {
+  const { selectedBookmark } = useAppSelector((state) => state.bookmarks);
+
+  const navigate = useNavigate();
+
   const open = Boolean(anchorEl);
 
   const [isOpenDeleteDialog, setIsOpenDeleteDialog] = useState(false);
@@ -24,6 +30,14 @@ function BookmarkMenuOptions({ anchorEl, onClose }: BookmarkMenuOptions) {
 
   const closeDeleteDialog = () => {
     setIsOpenDeleteDialog(false);
+  };
+
+  const handleClickEdit = () => {
+    if (!selectedBookmark) {
+      return;
+    }
+    const href = `/bookmarks/${selectedBookmark.id}/edit`;
+    navigate(href);
   };
 
   return (
@@ -45,7 +59,7 @@ function BookmarkMenuOptions({ anchorEl, onClose }: BookmarkMenuOptions) {
           horizontal: 'right',
         }}
       >
-        <MenuItem onClick={onClose}>
+        <MenuItem onClick={handleClickEdit}>
           <ListItemIcon>
             <EditIcon fontSize="small" />
           </ListItemIcon>

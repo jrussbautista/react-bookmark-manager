@@ -19,6 +19,10 @@ export const bookmarksApi = createApi({
             ]
           : [{ type: 'Bookmark', id: 'LIST' }],
     }),
+    getBookmark: builder.query<Bookmark, string>({
+      query: (id) => `bookmarks/${id}`,
+      providesTags: (result, error, id) => [{ type: 'Bookmark', id }],
+    }),
     addBookmark: builder.mutation<Bookmark, Partial<Bookmark>>({
       query: (body) => ({
         url: `bookmarks`,
@@ -36,11 +40,24 @@ export const bookmarksApi = createApi({
       },
       invalidatesTags: (result, error, id) => [{ type: 'Bookmark', id }],
     }),
+    updateBookmark: builder.mutation<
+      void,
+      Pick<Bookmark, 'id'> & Partial<Bookmark>
+    >({
+      query: ({ id, ...patch }) => ({
+        url: `bookmarks/${id}`,
+        method: 'PUT',
+        body: patch,
+      }),
+      invalidatesTags: (result, error, { id }) => [{ type: 'Bookmark', id }],
+    }),
   }),
 });
 
 export const {
+  useGetBookmarkQuery,
   useGetBookmarksQuery,
   useDeleteBookmarkMutation,
   useAddBookmarkMutation,
+  useUpdateBookmarkMutation,
 } = bookmarksApi;
