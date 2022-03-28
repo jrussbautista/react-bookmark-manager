@@ -6,3 +6,9 @@ export type Bookmark = {
   createdAt: string;
   updatedAt: string;
 };
+
+export type BookmarkFields = {
+  title: string;
+  description: string;
+  link: string;
+};

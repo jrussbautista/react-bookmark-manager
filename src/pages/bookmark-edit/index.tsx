@@ -5,7 +5,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import CircularProgress from '@mui/material/CircularProgress';
 import { useGetBookmarkQuery } from 'features/bookmarks/api';
-import UpdateBookmarkForm from 'features/bookmarks/UpdateBookmarkForm';
+import BookmarkUpdateForm from 'features/bookmarks/BookmarkUpdateForm';
 
 function BookmarkEditPage() {
   const { id } = useParams<{ id: string }>();
@@ -39,7 +39,7 @@ function BookmarkEditPage() {
       <Typography variant="h6" sx={{ mb: 3 }}>
         Update Bookmark
       </Typography>
-      <UpdateBookmarkForm id={data.id} bookmarkFields={bookmarkFields} />
+      <BookmarkUpdateForm id={data.id} bookmarkFields={bookmarkFields} />
     </>
   );
 }

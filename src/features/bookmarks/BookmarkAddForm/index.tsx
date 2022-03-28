@@ -1,0 +1,102 @@
+import React from 'react';
+import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
+import TextField from '@mui/material/TextField';
+import FormGroup from '@mui/material/FormGroup';
+import Button from '@mui/material/Button';
+import styled from '@mui/system/styled';
+import { useAddBookmarkMutation } from '../api';
+import { BookmarkFields } from '../types';
+
+const StyledFormGroup = styled(FormGroup)({
+  marginBottom: 20,
+});
+
+const ButtonActionContainer = styled('div')({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'flex-end',
+  marginTop: 2,
+});
+
+function BookmarkAddForm() {
+  const navigate = useNavigate();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<BookmarkFields>();
+
+  const [addBookmark, { isLoading }] = useAddBookmarkMutation();
+
+  const onSubmit = async (fields: BookmarkFields) => {
+    try {
+      const { id } = await addBookmark(fields).unwrap();
+      const url = `/bookmarks/${id}`;
+      navigate(url);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleCancel = () => {
+    navigate('/bookmarks');
+  };
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <StyledFormGroup>
+        <TextField
+          id="title"
+          label="Title"
+          variant="outlined"
+          {...register('title', { required: 'Title is required field.' })}
+          error={Boolean(errors.title)}
+          helperText={errors.title && errors.title.message}
+        />
+      </StyledFormGroup>
+      <StyledFormGroup>
+        <TextField
+          id="description"
+          label="Description"
+          variant="outlined"
+          multiline
+          maxRows={4}
+          {...register('description', {
+            required: 'Description is required field.',
+          })}
+          error={Boolean(errors.description)}
+          helperText={errors.description && errors.description.message}
+        />
+      </StyledFormGroup>
+      <StyledFormGroup>
+        <TextField
+          id="link"
+          label="Link"
+          variant="outlined"
+          {...register('link', {
+            required: 'Link is required field.',
+          })}
+          error={Boolean(errors.link)}
+          helperText={errors.link && errors.link.message}
+        />
+      </StyledFormGroup>
+      <ButtonActionContainer>
+        <Button sx={{ mr: 2 }} onClick={handleCancel}>
+          Cancel
+        </Button>
+        <Button
+          type="submit"
+          variant="contained"
+          disableElevation
+          disabled={isLoading}
+        >
+          Save
+        </Button>
+      </ButtonActionContainer>
+    </form>
+  );
+}
+
+export default BookmarkAddForm;

@@ -45,12 +45,7 @@ export const bookmarksHandlers = [
       ...data,
     };
     const bookmark = db.bookmarks.create(newBookMark);
-    return res(
-      ctx.delay(DELAY),
-      ctx.json({
-        ...bookmark,
-      })
-    );
+    return res(ctx.delay(DELAY), ctx.json(bookmark));
   }),
 
   rest.delete(`${API_URL}bookmarks/:id`, (req, res, ctx) => {
