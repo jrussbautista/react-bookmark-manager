@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
@@ -45,6 +46,8 @@ const MenuButton = styled(IconButton)(({ theme }) => ({
 const Navbar = () => {
   const [openDrawer, setOpenDrawer] = useState(false);
 
+  const navigate = useNavigate();
+
   return (
     <>
       <AppBarContainer>
@@ -56,8 +59,13 @@ const Navbar = () => {
                 {LINKS.map((link) => (
                   <ButtonLink key={link.title}>{link.title}</ButtonLink>
                 ))}
-                <Button variant="contained" color="error" disableElevation>
-                  LOGOUT
+                <Button
+                  onClick={() => navigate('/bookmarks/add')}
+                  variant="contained"
+                  color="info"
+                  disableElevation
+                >
+                  Add Bookmark
                 </Button>
               </LinksContainer>
 
