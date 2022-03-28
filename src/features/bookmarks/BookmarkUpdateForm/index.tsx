@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import FormGroup from '@mui/material/FormGroup';
 import Button from '@mui/material/Button';
@@ -25,12 +24,12 @@ type BookmarkFields = {
   link: string;
 };
 
-type UpdateBookmarkFormProps = {
+type BookmarkUpdateFormProps = {
   bookmarkFields: BookmarkFields;
   id: string;
 };
 
-function UpdateBookmarkForm({ bookmarkFields, id }: UpdateBookmarkFormProps) {
+function BookmarkUpdateForm({ bookmarkFields, id }: BookmarkUpdateFormProps) {
   const navigate = useNavigate();
 
   const {
@@ -116,4 +115,4 @@ function UpdateBookmarkForm({ bookmarkFields, id }: UpdateBookmarkFormProps) {
   );
 }
 
-export default UpdateBookmarkForm;
+export default BookmarkUpdateForm;
