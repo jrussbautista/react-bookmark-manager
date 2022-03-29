@@ -3,11 +3,13 @@ import { setupListeners } from '@reduxjs/toolkit/query';
 import bookmarksReducer from 'features/bookmarks/slice';
 import { bookmarksApi } from 'features/bookmarks/api';
 
+export const reducer = {
+  bookmarks: bookmarksReducer,
+  [bookmarksApi.reducerPath]: bookmarksApi.reducer,
+};
+
 export const store = configureStore({
-  reducer: {
-    bookmarks: bookmarksReducer,
-    [bookmarksApi.reducerPath]: bookmarksApi.reducer,
-  },
+  reducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(bookmarksApi.middleware),
 });

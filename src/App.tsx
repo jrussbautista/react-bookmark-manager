@@ -1,19 +1,15 @@
 import React from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
-import { ThemeProvider } from '@mui/material/styles';
-import { Provider } from 'react-redux';
-import { store } from 'app/store';
 import Routing from 'routes';
-import theme from 'theme';
+import Providers from 'providers';
+import { store } from './app/store';
 
 const App = () => {
   return (
-    <Provider store={store}>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <Routing />
-      </ThemeProvider>
-    </Provider>
+    <Providers store={store}>
+      <CssBaseline />
+      <Routing />
+    </Providers>
   );
 };
 
