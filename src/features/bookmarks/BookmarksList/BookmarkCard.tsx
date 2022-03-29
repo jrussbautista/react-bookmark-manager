@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -24,6 +25,8 @@ const TopContainer = styled('div')({
 const MAX_DESCRIPTION_LEN = 100;
 
 function BookmarkCard({ bookmark }: BookmarkCardProps) {
+  const navigate = useNavigate();
+
   const dispatch = useAppDispatch();
 
   const [menuAnchorEl, setMenuAnchorEl] = useState<null | HTMLElement>(null);
@@ -37,6 +40,11 @@ function BookmarkCard({ bookmark }: BookmarkCardProps) {
 
   const handleCloseMenuOptions = () => {
     setMenuAnchorEl(null);
+  };
+
+  const handleLearnMore = () => {
+    const href = `/bookmarks/${bookmark.id}`;
+    navigate(href);
   };
 
   return (
@@ -66,7 +74,7 @@ function BookmarkCard({ bookmark }: BookmarkCardProps) {
           >
             Visit Link
           </Button>
-          <Button size="small" variant="outlined">
+          <Button onClick={handleLearnMore} size="small" variant="outlined">
             Learn More
           </Button>
         </CardActions>
