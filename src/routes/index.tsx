@@ -9,18 +9,16 @@ import Layout from 'app/Layout';
 
 const Routing = () => {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path="bookmarks" element={<BookmarksPage />} />
-          <Route path="bookmarks/add" element={<BookmarkAdd />} />
-          <Route path="bookmarks/:id" element={<BookmarkDetailsPage />} />
-          <Route path="bookmarks/:id/edit" element={<BookmarkEditPage />} />
-          <Route path="*" element={<Navigate to="." />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <Routes>
+      <Route element={<Layout />}>
+        <Route index element={<Home />} />
+        <Route path="bookmarks" element={<BookmarksPage />} />
+        <Route path="bookmarks/add" element={<BookmarkAdd />} />
+        <Route path="bookmarks/:id" element={<BookmarkDetailsPage />} />
+        <Route path="bookmarks/:id/edit" element={<BookmarkEditPage />} />
+        <Route path="*" element={<Navigate to="." />} />
+      </Route>
+    </Routes>
   );
 };
 

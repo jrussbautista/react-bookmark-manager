@@ -1,5 +1,4 @@
-import { screen, render } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import { screen, render, userEvent } from 'test/utils';
 import Navbar from '.';
 import { LINKS } from 'constants/app';
 
