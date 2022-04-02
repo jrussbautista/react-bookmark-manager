@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { useSnackbar } from 'notistack';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
@@ -47,12 +48,30 @@ function BookmarkUpdateForm({ bookmarkFields, id }: BookmarkUpdateFormProps) {
 
   const [updateBookmark, { isLoading }] = useUpdateBookmarkMutation();
 
+  const { enqueueSnackbar } = useSnackbar();
+
   const onSubmit = async (fields: BookmarkFields) => {
     try {
       await updateBookmark({ id, ...fields }).unwrap();
+      enqueueSnackbar('Bookmark is successfully updated.', {
+        anchorOrigin: {
+          vertical: 'top',
+          horizontal: 'center',
+        },
+        variant: 'success',
+      });
       navigate('/bookmarks');
     } catch (err) {
-      console.log(err);
+      enqueueSnackbar(
+        `We could'nt update your bookmark right now. Please try again soon.`,
+        {
+          anchorOrigin: {
+            vertical: 'top',
+            horizontal: 'center',
+          },
+          variant: 'error',
+        }
+      );
     }
   };
 
