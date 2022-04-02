@@ -1,5 +1,6 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { useSnackbar } from 'notistack';
 import { useNavigate } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
 import FormGroup from '@mui/material/FormGroup';
@@ -30,13 +31,31 @@ function BookmarkAddForm() {
 
   const [addBookmark, { isLoading }] = useAddBookmarkMutation();
 
+  const { enqueueSnackbar } = useSnackbar();
+
   const onSubmit = async (fields: BookmarkFields) => {
     try {
       const { id } = await addBookmark(fields).unwrap();
       const url = `/bookmarks/${id}`;
+      enqueueSnackbar('Bookmark is successfully added.', {
+        anchorOrigin: {
+          vertical: 'top',
+          horizontal: 'center',
+        },
+        variant: 'success',
+      });
       navigate(url);
     } catch (err) {
-      console.log(err);
+      enqueueSnackbar(
+        `We could'nt add your bookmark right now. Please try again soon.`,
+        {
+          anchorOrigin: {
+            vertical: 'top',
+            horizontal: 'center',
+          },
+          variant: 'error',
+        }
+      );
     }
   };
 
