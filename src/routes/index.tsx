@@ -1,25 +1,44 @@
-import React from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import Home from 'pages/home';
-import BookmarksPage from 'pages/bookmarks';
-import BookmarkEditPage from 'pages/bookmark-edit';
-import BookmarkAdd from 'pages/bookmark-add';
-import BookmarkDetailsPage from 'pages/bookmark-details';
+import React, { lazy, Suspense } from 'react';
+import type { RouteObject } from 'react-router-dom';
+import { useRoutes, Navigate } from 'react-router-dom';
 import Layout from 'app/Layout';
+import Loader from 'app/Loader';
+
+const BookmarksPage = lazy(() => import('pages/bookmarks'));
+const BookmarkEditPage = lazy(() => import('pages/bookmark-edit'));
+const BookmarkAdd = lazy(() => import('pages/bookmark-add'));
+const BookmarkDetailsPage = lazy(() => import('pages/bookmark-details'));
+
+const routes: RouteObject[] = [
+  {
+    path: '/',
+    element: <Layout />,
+    children: [
+      { index: true, element: <Navigate to="/bookmarks" /> },
+      {
+        path: '/bookmarks',
+        element: <BookmarksPage />,
+      },
+      {
+        path: '/bookmarks/add',
+        element: <BookmarkAdd />,
+      },
+      {
+        path: '/bookmarks/:id',
+        element: <BookmarkDetailsPage />,
+      },
+      {
+        path: '/bookmarks/:id/edit',
+        element: <BookmarkEditPage />,
+      },
+      { path: '*', element: <Navigate to="/" /> },
+    ],
+  },
+];
 
 const Routing = () => {
-  return (
-    <Routes>
-      <Route element={<Layout />}>
-        <Route index element={<Home />} />
-        <Route path="bookmarks" element={<BookmarksPage />} />
-        <Route path="bookmarks/add" element={<BookmarkAdd />} />
-        <Route path="bookmarks/:id" element={<BookmarkDetailsPage />} />
-        <Route path="bookmarks/:id/edit" element={<BookmarkEditPage />} />
-        <Route path="*" element={<Navigate to="." />} />
-      </Route>
-    </Routes>
-  );
+  const element = useRoutes(routes);
+  return <Suspense fallback={<Loader />}> {element}</Suspense>;
 };
 
 export default Routing;
