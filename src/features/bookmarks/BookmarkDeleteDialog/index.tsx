@@ -1,3 +1,4 @@
+import { useSnackbar } from 'notistack';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -17,15 +18,33 @@ function BookmarkDeleteDialog({ open, onClose }: BookmarkDeleteDialogProps) {
 
   const { selectedBookmark } = useAppSelector((state) => state.bookmarks);
 
+  const { enqueueSnackbar } = useSnackbar();
+
   const handleProceed = async () => {
     if (!selectedBookmark) {
       return;
     }
     try {
       await deleteBookmark(selectedBookmark.id);
+      enqueueSnackbar('Bookmark is successfully deleted.', {
+        anchorOrigin: {
+          vertical: 'top',
+          horizontal: 'center',
+        },
+        variant: 'success',
+      });
       onClose();
     } catch (error) {
-      console.log('error');
+      enqueueSnackbar(
+        `We could'nt delete your bookmark right now. Please try again soon.`,
+        {
+          anchorOrigin: {
+            vertical: 'top',
+            horizontal: 'center',
+          },
+          variant: 'error',
+        }
+      );
     }
   };
 
