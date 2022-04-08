@@ -4,8 +4,9 @@ import Alert from '@mui/material/Alert';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import CircularProgress from '@mui/material/CircularProgress';
-import { useGetBookmarkQuery } from 'features/bookmarks/api';
-import BookmarkUpdateForm from 'features/bookmarks/BookmarkUpdateForm';
+
+import BookmarkUpdateForm from 'features/bookmarks/bookmark-update-form';
+import { useGetBookmarkQuery } from 'services/bookmarks';
 
 function BookmarkEditPage() {
   const { id } = useParams<{ id: string }>();
