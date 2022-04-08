@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Bookmark } from './types';
+import { Bookmark } from 'types';
 
 export type BookmarksState = {
   items: Bookmark[];

@@ -6,7 +6,7 @@ import TextField from '@mui/material/TextField';
 import FormGroup from '@mui/material/FormGroup';
 import Button from '@mui/material/Button';
 import styled from '@mui/system/styled';
-import { useUpdateBookmarkMutation } from '../api';
+import { useUpdateBookmarkMutation } from 'services/bookmarks';
 
 const StyledFormGroup = styled(FormGroup)({
   marginBottom: 20,

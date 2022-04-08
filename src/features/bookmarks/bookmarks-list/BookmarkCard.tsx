@@ -10,9 +10,9 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import styled from '@mui/system/styled';
 import { truncate } from 'utils';
 import { useAppDispatch } from 'app/hooks';
-import { Bookmark } from '../types';
-import BookmarkMenuOptions from '../BookmarkMenuActions';
-import { selectBookmark } from '../slice';
+import { Bookmark } from 'types';
+import { selectBookmark } from 'features/bookmarks/bookmark-slice';
+import BookmarkMenuOptions from 'features/bookmarks/bookmark-menu-actions';
 
 type BookmarkCardProps = {
   bookmark: Bookmark;

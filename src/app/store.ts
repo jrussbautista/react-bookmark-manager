@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
-import bookmarksReducer from 'features/bookmarks/slice';
-import { bookmarksApi } from 'features/bookmarks/api';
+import bookmarksReducer from 'features/bookmarks/bookmark-slice';
+import { bookmarksApi } from 'services/bookmarks';
 
 export const reducer = {
   bookmarks: bookmarksReducer,
