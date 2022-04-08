@@ -1,8 +1,8 @@
 import React, { lazy, Suspense } from 'react';
 import type { RouteObject } from 'react-router-dom';
 import { useRoutes, Navigate } from 'react-router-dom';
-import Layout from 'app/Layout';
-import Loader from 'app/Loader';
+import Layout from 'app/layout';
+import Loader from 'app/loader';
 
 const BookmarksPage = lazy(() => import('pages/bookmarks'));
 const BookmarkEditPage = lazy(() => import('pages/bookmark-edit'));
