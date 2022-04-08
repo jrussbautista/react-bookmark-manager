@@ -7,7 +7,7 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Button from '@mui/material/Button';
 import styled from '@mui/system/styled';
-import Drawer from 'app/Drawer';
+import Drawer from 'app/drawer';
 import { LINKS } from 'constants/app';
 
 const AppBarContainer = styled('div')({

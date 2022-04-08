@@ -8,7 +8,8 @@ import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
-import { useGetBookmarkQuery } from 'features/bookmarks/api';
+
+import { useGetBookmarkQuery } from 'services/bookmarks';
 
 function BookmarkDetailsPage() {
   const { id } = useParams<{ id: string }>();

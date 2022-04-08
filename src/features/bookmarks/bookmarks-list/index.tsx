@@ -2,8 +2,8 @@ import React from 'react';
 import CircularProgress from '@mui/material/CircularProgress';
 import Alert from '@mui/material/Alert';
 import Box from '@mui/material/Box';
+import { useGetBookmarksQuery } from 'services/bookmarks';
 import BookmarkCard from './BookmarkCard';
-import { useGetBookmarksQuery } from '../api';
 
 function BookmarksList() {
   const { data, isLoading, isError } = useGetBookmarksQuery();
