@@ -5,7 +5,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import CircularProgress from '@mui/material/CircularProgress';
 
-import BookmarkUpdateForm from 'features/bookmarks/bookmark-update-form';
+import BookmarkUpdateForm from 'features/bookmarks/BookmarkUpdateForm';
 import { useGetBookmarkQuery } from 'services/bookmarks';
 
 function BookmarkEditPage() {

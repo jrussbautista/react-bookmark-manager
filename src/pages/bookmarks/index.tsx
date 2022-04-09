@@ -1,4 +1,4 @@
-import BookmarksList from 'features/bookmarks/bookmarks-list';
+import BookmarksList from 'features/bookmarks/BookmarksList';
 import React from 'react';
 
 const BookmarksPage = () => {
