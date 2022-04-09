@@ -11,8 +11,8 @@ import styled from '@mui/system/styled';
 import { truncate } from 'utils';
 import { useAppDispatch } from 'app/hooks';
 import { Bookmark } from 'types';
-import { selectBookmark } from 'features/bookmarks/bookmark-slice';
-import BookmarkMenuOptions from 'features/bookmarks/bookmark-menu-actions';
+import { selectBookmark } from 'features/bookmarks/bookmarksSlice';
+import BookmarkMenuOptions from 'features/bookmarks/BookmarkMenuActions';
 
 type BookmarkCardProps = {
   bookmark: Bookmark;

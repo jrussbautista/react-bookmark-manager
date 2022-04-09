@@ -7,7 +7,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { useAppSelector } from 'app/hooks';
-import BookmarkDeleteDialog from 'features/bookmarks/bookmark-delete-dialog';
+import BookmarkDeleteDialog from 'features/bookmarks/BookmarkDeleteDialog';
 
 type BookmarkMenuOptions = {
   anchorEl: null | HTMLElement;

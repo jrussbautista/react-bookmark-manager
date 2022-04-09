@@ -1,6 +1,6 @@
 import React from 'react';
 import Typography from '@mui/material/Typography';
-import BookmarkAddForm from 'features/bookmarks/bookmark-add-form';
+import BookmarkAddForm from 'features/bookmarks/BookmarkAddForm';
 
 function BookmarkAdd() {
   return (

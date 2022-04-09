@@ -1,13 +1,13 @@
 import React, { lazy, Suspense } from 'react';
 import type { RouteObject } from 'react-router-dom';
 import { useRoutes, Navigate } from 'react-router-dom';
-import Layout from 'app/layout';
-import Loader from 'app/loader';
+import Layout from 'app/Layout';
+import Loader from 'app/Loader';
 
-const BookmarksPage = lazy(() => import('pages/bookmarks'));
-const BookmarkEditPage = lazy(() => import('pages/bookmark-edit'));
-const BookmarkAdd = lazy(() => import('pages/bookmark-add'));
-const BookmarkDetailsPage = lazy(() => import('pages/bookmark-details'));
+const BookmarksPage = lazy(() => import('pages/Bookmarks'));
+const BookmarkEditPage = lazy(() => import('pages/BookmarkEdit'));
+const BookmarkAdd = lazy(() => import('pages/BookmarkAdd'));
+const BookmarkDetailsPage = lazy(() => import('pages/BookmarkDetails'));
 
 const routes: RouteObject[] = [
   {
